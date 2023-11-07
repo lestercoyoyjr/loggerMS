@@ -9,5 +9,10 @@ app.use(bodyParser.json("application/json"));
 
 // Publish the message
 app.post("/sendLog", async(req,res,next) => {
-
+    await producer.publishMessage(req.body.logType, req.body.message);
+    res.send();
 })
+
+app.listen(3000, () => {
+    console.log("Server started...")
+});
